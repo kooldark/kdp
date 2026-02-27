@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KD PROFILE - Chụp Ảnh Profile Doanh Nhân Chuyên Nghiệp</title>
+    <meta name="description" content="Studio chụp ảnh profile doanh nhân chuyên nghiệp, tinh tế tối giản, Art & Elegant">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1>KD</h1>
+                    <span class="subtitle">PROFILE</span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="nav-link active">Trang Chủ</a></li>
+                    <li><a href="#before-after" class="nav-link">Before/After</a></li>
+                    <li><a href="#portfolio" class="nav-link">Tác Phẩm</a></li>
+                    <li><a href="#pricing" class="nav-link">Giá</a></li>
+                    <li><a href="#process" class="nav-link">Quy Trình</a></li>
+                    <li><a href="#contact" class="nav-link">Liên Hệ</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h2 class="hero-title">Định Hình Hình Ảnh Chuyên Nghiệp</h2>
+                <p class="hero-subtitle">Chụp ảnh profile cao cấp cho doanh nhân, lãnh đạo và chuyên gia</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Đặt Lịch Hôm Nay</a>
+                    <a href="#portfolio" class="btn btn-secondary">Xem Tác Phẩm</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-placeholder">
+                    <div class="gradient-circle"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before/After Slider Section -->
+    <section id="before-after" class="before-after">
+        <div class="container">
+            <div class="section-header">
+                <h2>Hiệu Quả Chỉnh Sửa Chuyên Nghiệp</h2>
+                <div class="accent-line"></div>
+                <p>Xem sự khác biệt mà kỹ năng retouching của chúng tôi mang lại</p>
+            </div>
+
+            <div class="before-after-gallery">
+                <div class="before-after-item">
+                    <div class="before-after-slider">
+                        <div class="img-before">
+                            <div class="placeholder-before">Before</div>
+                        </div>
+                        <div class="img-after">
+                            <div class="placeholder-after">After</div>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="slider-handle">
+                    </div>
+                    <p class="ba-label">Executive Portrait</p>
+                </div>
+
+                <div class="before-after-item">
+                    <div class="before-after-slider">
+                        <div class="img-before">
+                            <div class="placeholder-before">Before</div>
+                        </div>
+                        <div class="img-after">
+                            <div class="placeholder-after">After</div>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="slider-handle">
+                    </div>
+                    <p class="ba-label">Corporate Profile</p>
+                </div>
+
+                <div class="before-after-item">
+                    <div class="before-after-slider">
+                        <div class="img-before">
+                            <div class="placeholder-before">Before</div>
+                        </div>
+                        <div class="img-after">
+                            <div class="placeholder-after">After</div>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="slider-handle">
+                    </div>
+                    <p class="ba-label">Personal Branding</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio with Categories -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tác Phẩm Tiêu Biểu</h2>
+                <div class="accent-line"></div>
+                <p>Những bức ảnh memento chuyên nghiệp, tỉ mỉ từng chi tiết</p>
+            </div>
+
+            <!-- Gallery Filters -->
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">Tất Cả</button>
+                <button class="filter-btn" data-filter="executive">Executive</button>
+                <button class="filter-btn" data-filter="corporate">Corporate</button>
+                <button class="filter-btn" data-filter="entrepreneur">Entrepreneur</button>
+                <button class="filter-btn" data-filter="influencer">Influencer</button>
+            </div>
+            
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item" data-category="executive">
+                    <div class="gallery-image">
+                        <div class="image-placeholder-small"></div>
+                        <div class="gallery-overlay">
+                            <a href="#" class="gallery-link" title="Xem toàn bộ"><i class="fas fa-expand"></i></a>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Executive Portrait</h3>
+                        <p>CEO & Founder</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="corporate">
+                    <div class="gallery-image">
+                        <div class="image-placeholder-small"></div>
+                        <div class="gallery-overlay">
+                            <a href="#" class="gallery-link" title="Xem toàn bộ"><i class="fas fa-expand"></i></a>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Corporate Profile</h3>
+                        <p>Manager Series</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="corporate">
+                    <div class="gallery-image">
+                        <div class="image-placeholder-small"></div>
+                        <div class="gallery-overlay">
+                            <a href="#" class="gallery-link" title="Xem toàn bộ"><i class="fas fa-expand"></i></a>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Professional Headshot</h3>
+                        <p>Team Member</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="entrepreneur">
+                    <div class="gallery-image">
+                        <div class="image-placeholder-small"></div>
+                        <div class="gallery-overlay">
+                            <a href="#" class="gallery-link" title="Xem toàn bộ"><i class="fas fa-expand"></i></a>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Business Portrait</h3>
+                        <p>Entrepreneur</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="influencer">
+                    <div class="gallery-image">
+                        <div class="image-placeholder-small"></div>
+                        <div class="gallery-overlay">
+                            <a href="#" class="gallery-link" title="Xem toàn bộ"><i class="fas fa-expand"></i></a>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Personal Branding</h3>
+                        <p>Influencer Series</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="executive">
+                    <div class="gallery-image">
+                        <div class="image-placeholder-small"></div>
+                        <div class="gallery-overlay">
+                            <a href="#" class="gallery-link" title="Xem toàn bộ"><i class="fas fa-expand"></i></a>
+                        </div>
+                    </div>
+                    <div class="gallery-info">
+                        <h3>Studio Session</h3>
+                        <p>Premium Package</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="center-button">
+                <a href="#pricing" class="btn btn-outline">Xem Bộ Sưu Tập Đầy Đủ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Table Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bảng Giá Dịch Vụ</h2>
+                <div class="accent-line"></div>
+                <p>Gói dịch vụ minh bạch, không còn phí ẩn</p>
+            </div>
+
+            <div class="pricing-table-wrapper">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Gói Dịch Vụ</th>
+                            <th>Thời Gian</th>
+                            <th>Số Ảnh</th>
+                            <th>Retouching</th>
+                            <th>Giá</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="service-name">Studio Session</td>
+                            <td>2 tiếng</td>
+                            <td>120 ảnh</td>
+                            <td>Cơ bản</td>
+                            <td class="price">2.500.000đ</td>
+                            <td><button class="btn btn-table">Chọn</button></td>
+                        </tr>
+                        <tr>
+                            <td class="service-name">Office Location</td>
+                            <td>3 tiếng</td>
+                            <td>150 ảnh</td>
+                            <td>Nâng cao</td>
+                            <td class="price">3.500.000đ</td>
+                            <td><button class="btn btn-table">Chọn</button></td>
+                        </tr>
+                        <tr class="best-seller">
+                            <td class="service-name">⭐ Portfolio Package</td>
+                            <td>Full Day</td>
+                            <td>300+ ảnh</td>
+                            <td>Tối đa</td>
+                            <td class="price">6.500.000đ</td>
+                            <td><button class="btn btn-table">Chọn</button></td>
+                        </tr>
+                        <tr>
+                            <td class="service-name">Corporate Team</td>
+                            <td>Tùy chỉnh</td>
+                            <td>Tùy nhân</td>
+                            <td>Chuẩn</td>
+                            <td class="price">Liên hệ</td>
+                            <td><button class="btn btn-table">Chi tiết</button></td>
+                        </tr>
+                        <tr>
+                            <td class="service-name">Retouching Service</td>
+                            <td>3-5 ngày</td>
+                            <td>Tùy</td>
+                            <td>Chuyên sâu</td>
+                            <td class="price">500k/1 ảnh</td>
+                            <td><button class="btn btn-table">Chọn</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process/Timeline Section -->
+    <section id="process" class="process">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quy Trình Làm Việc</h2>
+                <div class="accent-line"></div>
+                <p>5 bước chuyên nghiệp từ tư vấn đến kết quả cuối cùng</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <h3>Tư Vấn & Lên Kế Hoạch</h3>
+                        <p>Gặp trực tiếp hoặc gọi điện để hiểu nhu cầu của bạn, lên kế hoạch chi tiết về concept, background, outfit, makeup...</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <h3>Chuẩn Bị & Cơ Sở Hạ Tầng</h3>
+                        <p>Chuẩn bị studio/location, kiểm tra lighting, background, props, makeup artist, stylist nếu cần</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <h3>Buổi Chụp Hình</h3>
+                        <p>Chụp ảnh chuyên nghiệp với hàng trăm tấm, test nhiều pose, expression, để có nhiều lựa chọn</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-content">
+                        <h3>Chỉnh Sửa & Retouching</h3>
+                        <p>Lựa chọn ảnh tốt nhất, retouching chi tiết, color grading, tạo style nhất quán cho bộ ảnh</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-number">5</div>
+                    <div class="timeline-content">
+                        <h3>Bàn Giao & Hỗ Trợ</h3>
+                        <p>Giao file high-res, hướng dẫn sử dụng, hỗ trợ tối ưu các ảnh cho mạng xã hội, website</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog/Portfolio Categories Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bộ Sưu Tập & Tips</h2>
+                <div class="accent-line"></div>
+                <p>Khám phá các danh mục portfolio và mẹo chụp ảnh chuyên nghiệp</p>
+            </div>
+
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder"></div>
+                        <span class="blog-category">Executive</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Bộ Sưu Tập Executive Portrait</h3>
+                        <p>40+ bức ảnh CEO, Founder, lãnh đạo công ty. Style: chuyên nghiệp, uy tín, sang trọng</p>
+                        <a href="#" class="read-more">Xem Danh Sách →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder"></div>
+                        <span class="blog-category">Corporate</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Bộ Sưu Tập Corporate Team</h3>
+                        <p>100+ bức ảnh nhân viên công ty, manager, team leader. Nhất quán, chuyên nghiệp, hiệu quả</p>
+                        <a href="#" class="read-more">Xem Danh Sách →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder"></div>
+                        <span class="blog-category">Entrepreneur</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Bộ Sưu Tập Entrepreneur & Startup</h3>
+                        <p>60+ bức ảnh người khởi nghiệp, founder startup. Style: trendy, creative, dynamic</p>
+                        <a href="#" class="read-more">Xem Danh Sách →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder"></div>
+                        <span class="blog-category">Influencer</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Bộ Sưu Tập Personal Branding</h3>
+                        <p>50+ bức ảnh influencer, content creator. Style: lifestyle, professional, beautiful</p>
+                        <a href="#" class="read-more">Xem Danh Sách →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder"></div>
+                        <span class="blog-category">Tips</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>10 Tips Chụp Ảnh Profile Đẹp</h3>
+                        <p>Hướng dẫn chọn outfit, makeup, tư thế, biểu cảm để có ảnh profile chuyên nghiệp nhất</p>
+                        <a href="#" class="read-more">Đọc Bài →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-placeholder"></div>
+                        <span class="blog-category">Tips</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Cách Tối Ưu Ảnh Profile Cho LinkedIn</h3>
+                        <p>Kích thước, background, crop ảnh sao cho đạt chuẩn LinkedIn và tăng tương tác</p>
+                        <a href="#" class="read-more">Đọc Bài →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Dịch Vụ Chuyên Nghiệp</h2>
+                <div class="accent-line"></div>
+                <p>Gói dịch vụ toàn diện cho mọi nhu cầu</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Studio Session</h3>
+                    <p>Chụp ảnh trong studio hiện đại với lighting chuyên nghiệp, background đa dạng</p>
+                    <ul class="service-features">
+                        <li>2 tiếng chụp</li>
+                        <li>3 tờ nền khác nhau</li>
+                        <li>Chỉnh sửa chuyên nghiệp</li>
+                        <li>120 ảnh high-res</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Office Location</h3>
+                    <p>Chụp tại văn phòng của bạn với cách sắp xếp ánh sáng tư nhiên tối ưu</p>
+                    <ul class="service-features">
+                        <li>Chụp tại văn phòng</li>
+                        <li>3 tiếng làm việc</li>
+                        <li>Retouching nâng cao</li>
+                        <li>150 ảnh high-res</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3>Portfolio Package</h3>
+                    <p>Gói toàn diện cho nhân vật công chúng, doanh nhân, seeking ultimate presence</p>
+                    <ul class="service-features">
+                        <li>Combo Studio + Location</li>
+                        <li>Video promo 30s</li>
+                        <li>Chỉnh sửa PSD riêng</li>
+                        <li>300+ ảnh high-res</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Corporate Team</h3>
+                    <p>Dịch vụ chụp ảnh profile cho toàn bộ đội ngũ công ty của bạn</p>
+                    <ul class="service-features">
+                        <li>Giá ưu đãi theo nhân</li>
+                        <li>Nền riêng cho công ty</li>
+                        <li>Xử lý hàng loạt</li>
+                        <li>Delivery nhanh</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <h3>Retouching Service</h3>
+                    <p>Dịch vụ chỉnh sửa chuyên sâu từ ảnh cũ của bạn</p>
+                    <ul class="service-features">
+                        <li>Khôi phục ảnh cũ</li>
+                        <li>Retouch nâng cao</li>
+                        <li>Color grading</li>
+                        <li>Upscale resolution</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-print"></i>
+                    </div>
+                    <h3>Print & Frame</h3>
+                    <p>In ấn chất lượng cao và khung treo sang trọng</p>
+                    <ul class="service-features">
+                        <li>Giấy Premium Fujifilm</li>
+                        <li>Canvas cao cấp</li>
+                        <li>Khung gỗ tự nhiên</li>
+                        <li>Giao hàng & treo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Về KD PROFILE</h2>
+                    <div class="accent-line left"></div>
+                    <p>Với hơn 10 năm kinh nghiệm trong lĩnh vực chụp ảnh portrait chuyên nghiệp, KD PROFILE đã phục vụ hàng ngàn doanh nhân, CEO, và lãnh đạo tại Hồ Chí Minh.</p>
+                    <p>Chúng tôi không chỉ chụp ảnh, mà chúng tôi định hình hình ảnh chuyên nghiệp của bạn. Mỗi bức ảnh là một tác phẩm nghệ thuật, được tạo ra với sự tỉ mỉ, chuyên nghiệp và passion.</p>
+                    <p>Triết lý của chúng tôi đơn giản: <strong>Tối giản, Tinh tế, Sang Trọng</strong>. Mỗi chi tiết từ lighting, background, color grading đều được cân nhắc kỹ lưỡng để tạo ra hình ảnh tôi.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>10+</h3>
+                            <p>Năm kinh nghiệm</p>
+                        </div>
+                        <div class="stat">
+                            <h3>5000+</h3>
+                            <p>Khách hàng hài lòng</p>
+                        </div>
+                        <div class="stat">
+                            <h3>100%</h3>
+                            <p>Chất lượng cam kết</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder-large"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Sẵn Sàng Nâng Tầm Hình Ảnh Chuyên Nghiệp Của Bạn?</h2>
+            <p>Liên hệ với chúng tôi hôm nay để tạo nên một hình ảnh chuyên nghiệp, sang trọng và ấn tượng</p>
+            <a href="#contact" class="btn btn-large">Đặt Lịch Tư Vấn Miễn Phí</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Liên Hệ Chúng Tôi</h2>
+                <div class="accent-line"></div>
+                <p>Hãy để chúng tôi tạo nên hình ảnh chuyên nghiệp cho bạn</p>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Địa Chỉ Studio</h3>
+                            <p>485 Phan Văn Trị, Phường 5<br>Gò Vấp, Hồ Chí Minh, Việt Nam</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Điện Thoại</h3>
+                            <p><a href="tel:+84379031662">0379 031 662</a></p>
+                            <p>Thứ Hai - Thứ Bảy, 9:00AM - 7:00PM</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Mạng Xã Hội</h3>
+                            <div class="social-links">
+                                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Họ Tên *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Điện Thoại</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Công Ty</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Dịch Vụ Quan Tâm *</label>
+                        <select id="service" name="service" required>
+                            <option value="">-- Chọn dịch vụ --</option>
+                            <option value="studio">Studio Session</option>
+                            <option value="office">Office Location</option>
+                            <option value="portfolio">Portfolio Package</option>
+                            <option value="corporate">Corporate Team</option>
+                            <option value="retouching">Retouching Service</option>
+                            <option value="print">Print & Frame</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Lời Nhắn</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Chia sẻ nhu cầu của bạn..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Gửi Yêu Cầu</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KD PROFILE</h3>
+                    <p>Định hình hình ảnh chuyên nghiệp cho những con người đặc biệt</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Trang Chủ</a></li>
+                        <li><a href="#portfolio">Tác Phẩm</a></li>
+                        <li><a href="#services">Dịch Vụ</a></li>
+                        <li><a href="#about">Về Chúng Tôi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Thông Tin</h4>
+                    <ul>
+                        <li><a href="#contact">Liên Hệ</a></li>
+                        <li><a href="#">Chính Sách Riêng Tư</a></li>
+                        <li><a href="#">Điều Khoản Dịch Vụ</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Đăng ký nhận tin tửc mới nhất về ảnh chuyên nghiệp</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email của bạn" required>
+                        <button type="submit">Đăng Ký</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 KD PROFILE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
+    <script src="js/image-loader.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

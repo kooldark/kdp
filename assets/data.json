@@ -1,0 +1,194 @@
+{
+  "portfolio": {
+    "executive": [
+      {
+        "id": 1,
+        "title": "Executive Portrait",
+        "subtitle": "CEO & Founder",
+        "image": "assets/images/executive/1.jpg",
+        "category": "executive"
+      },
+      {
+        "id": 2,
+        "title": "C-Level Profile",
+        "subtitle": "Director",
+        "image": "assets/images/executive/2.jpg",
+        "category": "executive"
+      },
+      {
+        "id": 3,
+        "title": "Leadership Portrait",
+        "subtitle": "VP Manager",
+        "image": "assets/images/executive/3.jpg",
+        "category": "executive"
+      },
+      {
+        "id": 4,
+        "title": "Board Member",
+        "subtitle": "Chairman",
+        "image": "assets/images/executive/4.jpg",
+        "category": "executive"
+      }
+    ],
+    "corporate": [
+      {
+        "id": 5,
+        "title": "Corporate Profile",
+        "subtitle": "Manager Series",
+        "image": "assets/images/corporate/1.jpg",
+        "category": "corporate"
+      },
+      {
+        "id": 6,
+        "title": "Team Member",
+        "subtitle": "Professional Headshot",
+        "image": "assets/images/corporate/2.jpg",
+        "category": "corporate"
+      },
+      {
+        "id": 7,
+        "title": "Department Head",
+        "subtitle": "Corporate",
+        "image": "assets/images/corporate/3.jpg",
+        "category": "corporate"
+      },
+      {
+        "id": 8,
+        "title": "Team Lead",
+        "subtitle": "Corporate Series",
+        "image": "assets/images/corporate/4.jpg",
+        "category": "corporate"
+      }
+    ],
+    "entrepreneur": [
+      {
+        "id": 9,
+        "title": "Entrepreneur Portrait",
+        "subtitle": "Startup Founder",
+        "image": "assets/images/entrepreneur/1.jpg",
+        "category": "entrepreneur"
+      },
+      {
+        "id": 10,
+        "title": "Business Owner",
+        "subtitle": "SME Leader",
+        "image": "assets/images/entrepreneur/2.jpg",
+        "category": "entrepreneur"
+      },
+      {
+        "id": 11,
+        "title": "Startup Profile",
+        "subtitle": "Co-Founder",
+        "image": "assets/images/entrepreneur/3.jpg",
+        "category": "entrepreneur"
+      },
+      {
+        "id": 12,
+        "title": "Creative Director",
+        "subtitle": "Entrepreneur",
+        "image": "assets/images/entrepreneur/4.jpg",
+        "category": "entrepreneur"
+      }
+    ],
+    "influencer": [
+      {
+        "id": 13,
+        "title": "Personal Branding",
+        "subtitle": "Influencer Series",
+        "image": "assets/images/influencer/1.jpg",
+        "category": "influencer"
+      },
+      {
+        "id": 14,
+        "title": "Content Creator",
+        "subtitle": "Social Media",
+        "image": "assets/images/influencer/2.jpg",
+        "category": "influencer"
+      },
+      {
+        "id": 15,
+        "title": "Personal Brand",
+        "subtitle": "Professional",
+        "image": "assets/images/influencer/3.jpg",
+        "category": "influencer"
+      },
+      {
+        "id": 16,
+        "title": "Lifestyle Portrait",
+        "subtitle": "Influencer",
+        "image": "assets/images/influencer/4.jpg",
+        "category": "influencer"
+      }
+    ]
+  },
+  "beforeAfter": [
+    {
+      "id": 1,
+      "title": "Executive Portrait",
+      "before": "assets/images/before-after/executive-before.jpg",
+      "after": "assets/images/before-after/executive-after.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Corporate Profile",
+      "before": "assets/images/before-after/corporate-before.jpg",
+      "after": "assets/images/before-after/corporate-after.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Personal Branding",
+      "before": "assets/images/before-after/influencer-before.jpg",
+      "after": "assets/images/before-after/influencer-after.jpg"
+    }
+  ],
+  "blog": [
+    {
+      "id": 1,
+      "title": "Bộ Sưu Tập Executive Portrait",
+      "category": "Executive",
+      "description": "40+ bức ảnh CEO, Founder, lãnh đạo công ty. Style: chuyên nghiệp, uy tín, sang trọng",
+      "image": "assets/images/blog/executive.jpg",
+      "link": "#executive-portfolio"
+    },
+    {
+      "id": 2,
+      "title": "Bộ Sưu Tập Corporate Team",
+      "category": "Corporate",
+      "description": "100+ bức ảnh nhân viên công ty, manager, team leader. Nhất quán, chuyên nghiệp, hiệu quả",
+      "image": "assets/images/blog/corporate.jpg",
+      "link": "#corporate-portfolio"
+    },
+    {
+      "id": 3,
+      "title": "Bộ Sưu Tập Entrepreneur & Startup",
+      "category": "Entrepreneur",
+      "description": "60+ bức ảnh người khởi nghiệp, founder startup. Style: trendy, creative, dynamic",
+      "image": "assets/images/blog/entrepreneur.jpg",
+      "link": "#entrepreneur-portfolio"
+    },
+    {
+      "id": 4,
+      "title": "Bộ Sưu Tập Personal Branding",
+      "category": "Influencer",
+      "description": "50+ bức ảnh influencer, content creator. Style: lifestyle, professional, beautiful",
+      "image": "assets/images/blog/influencer.jpg",
+      "link": "#influencer-portfolio"
+    },
+    {
+      "id": 5,
+      "title": "10 Tips Chụp Ảnh Profile Đẹp",
+      "category": "Tips",
+      "description": "Hướng dẫn chọn outfit, makeup, tư thế, biểu cảm để có ảnh profile chuyên nghiệp nhất",
+      "image": "assets/images/blog/tips-1.jpg",
+      "link": "#tips"
+    },
+    {
+      "id": 6,
+      "title": "Cách Tối Ưu Ảnh Profile Cho LinkedIn",
+      "category": "Tips",
+      "description": "Kích thước, background, crop ảnh sao cho đạt chuẩn LinkedIn và tăng tương tác",
+      "image": "assets/images/blog/tips-2.jpg",
+      "link": "#tips"
+    }
+  ]
+}

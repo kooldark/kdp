@@ -138,26 +138,7 @@ if (contactForm) {
     });
 }
 
-// ============================================
-// NEWSLETTER FORM HANDLING
-// ============================================
 
-const newsletterForms = document.querySelectorAll('.newsletter-form');
-
-newsletterForms.forEach(form => {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const email = this.querySelector('input[type="email"]').value;
-        
-        if (email) {
-            showNotification('Cảm ơn bạn đã đăng ký nhận tin tức!', 'success');
-            this.reset();
-        }
-    });
-});
-
-// ============================================
 // NOTIFICATION SYSTEM
 // ============================================
 

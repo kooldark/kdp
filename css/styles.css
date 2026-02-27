@@ -746,42 +746,7 @@ body {
     color: var(--secondary-color);
 }
 
-.newsletter-form {
-    display: flex;
-    margin-top: 15px;
-}
 
-.newsletter-form input {
-    flex: 1;
-    padding: 12px 15px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: var(--white);
-    font-size: 13px;
-    border-radius: 3px 0 0 3px;
-}
-
-.newsletter-form input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.newsletter-form button {
-    padding: 12px 20px;
-    background: var(--secondary-color);
-    border: none;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 12px;
-    border-radius: 0 3px 3px 0;
-    color: var(--primary-color);
-    transition: var(--transition);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.newsletter-form button:hover {
-    background: var(--accent-color);
-}
 
 .footer-bottom {
     text-align: center;

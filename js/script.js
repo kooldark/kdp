@@ -148,20 +148,23 @@ function showNotification(message, type = 'success') {
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
     
+    // Check if mobile (window width < 768px)
+    const isMobile = window.innerWidth < 768;
+    
     // Add styles dynamically
     notification.style.cssText = `
         position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background: ${type === 'success' ? '#4caf50' : '#f44336'};
+        ${isMobile ? 'bottom: 15px; right: 15px; left: 15px;' : 'bottom: 30px; right: 30px;'}
+        background: ${type === 'success' ? '#4caf50' : type === 'info' ? '#2196F3' : '#f44336'};
         color: white;
-        padding: 16px 24px;
+        padding: ${isMobile ? '14px 16px' : '16px 24px'};
         border-radius: 4px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         z-index: 2000;
         animation: slideIn 0.3s ease-out;
-        max-width: 400px;
-        font-size: 14px;
+        max-width: ${isMobile ? 'none' : '400px'};
+        font-size: ${isMobile ? '13px' : '14px'};
+        line-height: 1.4;
     `;
     
     document.body.appendChild(notification);
@@ -303,16 +306,36 @@ if (phoneInput) {
 const sliderHandles = document.querySelectorAll('.slider-handle');
 
 sliderHandles.forEach(slider => {
-    slider.addEventListener('input', (e) => {
-        const value = e.target.value;
-        const afterImage = e.target.parentElement.querySelector('.img-after');
+    const updateSlider = (e) => {
+        const value = e.target ? e.target.value : e.value;
+        const afterImage = e.target?.parentElement?.querySelector('.img-after') || slider.parentElement.querySelector('.img-after');
         afterImage.style.width = value + '%';
-    });
+    };
+
+    slider.addEventListener('input', updateSlider);
+    slider.addEventListener('touch', updateSlider);
     
     // Set initial value
     slider.value = 50;
     const afterImage = slider.parentElement.querySelector('.img-after');
     afterImage.style.width = '50%';
+
+    // Add touch support for better mobile interaction
+    slider.addEventListener('touchstart', (e) => {
+        slider.classList.add('active');
+    });
+
+    slider.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        const rect = slider.getBoundingClientRect();
+        const percent = Math.min(Math.max(0, (touch.clientX - rect.left) / rect.width), 1) * 100;
+        slider.value = percent;
+        updateSlider({ target: slider });
+    });
+
+    slider.addEventListener('touchend', (e) => {
+        slider.classList.remove('active');
+    });
 });
 
 // ============================================

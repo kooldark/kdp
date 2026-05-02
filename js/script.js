@@ -438,10 +438,293 @@ blogCards.forEach(card => {
 });
 
 // ============================================
+// GALLERY MODAL/LIGHTBOX
+// ============================================
+
+// Create modal HTML for gallery
+function createGalleryModal() {
+    if (document.getElementById('galleryModal')) {
+        return; // Modal already exists
+    }
+
+    const modal = document.createElement('div');
+    modal.id = 'galleryModal';
+    modal.className = 'gallery-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-image">
+                <img id="modalImage" src="" alt="Gallery Image" />
+            </div>
+            <div class="modal-nav">
+                <button id="prevBtn" class="modal-btn">&larr; Previous</button>
+                <span id="imageCounter"></span>
+                <button id="nextBtn" class="modal-btn">Next &rarr;</button>
+            </div>
+        </div>
+    `;
+
+    // Add styles for modal
+    const styles = document.createElement('style');
+    styles.textContent = `
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .gallery-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 35px;
+            font-weight: bold;
+            color: var(--primary-color);
+            cursor: pointer;
+            z-index: 10000;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .modal-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-height: 75vh;
+            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+        }
+
+        .modal-image img {
+            max-width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+        }
+
+        .modal-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: var(--light-bg);
+            gap: 15px;
+        }
+
+        .modal-btn {
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-btn:hover {
+            background: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        #imageCounter {
+            font-size: 14px;
+            color: var(--text-dark);
+            font-weight: 600;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                max-width: 95%;
+                max-height: 95vh;
+            }
+
+            .modal-close {
+                top: 10px;
+                right: 10px;
+                font-size: 28px;
+            }
+
+            .modal-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .modal-btn {
+                width: 100%;
+                padding: 12px 15px;
+            }
+        }
+    `;
+    document.head.appendChild(styles);
+    document.body.appendChild(modal);
+}
+
+// Initialize gallery modal
+createGalleryModal();
+
+// Gallery images data (can be populated from actual images)
+let galleryImages = [];
+
+// Collect gallery images
+function initializeGalleryImages() {
+    const galleryLinks = document.querySelectorAll('.gallery-link, .featured-link');
+    galleryLinks.forEach((link, index) => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            openGalleryModal(index);
+        });
+    });
+}
+
+let currentImageIndex = 0;
+
+function openGalleryModal(index) {
+    const modal = document.getElementById('galleryModal');
+    const modalImage = document.getElementById('modalImage');
+    
+    // Get all gallery items
+    const allImages = document.querySelectorAll('.gallery-item, .featured-item');
+    galleryImages = Array.from(allImages);
+    currentImageIndex = index;
+    
+    // Update modal image (using placeholder for now, can be replaced with real images)
+    const imagePlaceholder = galleryImages[currentImageIndex]?.querySelector('.image-placeholder-small, .image-placeholder-featured');
+    if (imagePlaceholder) {
+        // For demo: show placeholder background color
+        modalImage.style.background = window.getComputedStyle(imagePlaceholder).background;
+        modalImage.alt = galleryImages[currentImageIndex]?.querySelector('h3')?.textContent || 'Gallery Image';
+    }
+    
+    updateImageCounter();
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeGalleryModal() {
+    const modal = document.getElementById('galleryModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+function updateImageCounter() {
+    const counter = document.getElementById('imageCounter');
+    counter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+}
+
+function navigateGallery(direction) {
+    if (galleryImages.length === 0) return;
+    
+    currentImageIndex += direction;
+    if (currentImageIndex >= galleryImages.length) {
+        currentImageIndex = 0;
+    } else if (currentImageIndex < 0) {
+        currentImageIndex = galleryImages.length - 1;
+    }
+    
+    const modal = document.getElementById('galleryModal');
+    const modalImage = document.getElementById('modalImage');
+    const imagePlaceholder = galleryImages[currentImageIndex]?.querySelector('.image-placeholder-small, .image-placeholder-featured');
+    
+    if (imagePlaceholder) {
+        modalImage.style.background = window.getComputedStyle(imagePlaceholder).background;
+    }
+    
+    updateImageCounter();
+}
+
+// Modal controls
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('galleryModal');
+    const closeBtn = document.querySelector('.modal-close');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeGalleryModal);
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => navigateGallery(-1));
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => navigateGallery(1));
+    }
+
+    // Close modal when clicking outside
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeGalleryModal();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') closeGalleryModal();
+            if (e.key === 'ArrowLeft') navigateGallery(-1);
+            if (e.key === 'ArrowRight') navigateGallery(1);
+        });
+    }
+
+    initializeGalleryImages();
+
+// ============================================
+// LOAD IMAGES FROM DATA.JSON ON PAGE LOAD
+// ============================================
+
+// Load image data when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadImageData);
+} else {
+    loadImageData();
+}
+});
+
+// ============================================
 // INITIALIZATION
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
     // Any initialization code can go here
-    console.log('KD PROFILE Website loaded successfully');
+    console.log('Professional Photography Portfolio loaded successfully');
 });

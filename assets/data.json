@@ -1,5 +1,180 @@
 {
-  "portfolio": {},
-  "beforeAfter": [],
+  "portfolio": {
+    "executive": [
+      {
+        "image": "assets/images/executive/kdp (1).JPEG",
+        "title": "Executive - kdp (1).JPEG",
+        "subtitle": "Chân dung executive",
+        "category": "executive"
+      },
+      {
+        "image": "assets/images/executive/kdp (12).JPG",
+        "title": "Executive - kdp (12).JPG",
+        "subtitle": "Chân dung executive",
+        "category": "executive"
+      },
+      {
+        "image": "assets/images/executive/kdp (16).JPG",
+        "title": "Executive - kdp (16).JPG",
+        "subtitle": "Chân dung executive",
+        "category": "executive"
+      },
+      {
+        "image": "assets/images/executive/kdp (2).JPEG",
+        "title": "Executive - kdp (2).JPEG",
+        "subtitle": "Chân dung executive",
+        "category": "executive"
+      },
+      {
+        "image": "assets/images/executive/kdp (22).JPG",
+        "title": "Executive - kdp (22).JPG",
+        "subtitle": "Chân dung executive",
+        "category": "executive"
+      },
+      {
+        "image": "assets/images/executive/kdp (5).JPG",
+        "title": "Executive - kdp (5).JPG",
+        "subtitle": "Chân dung executive",
+        "category": "executive"
+      },
+      {
+        "image": "assets/images/executive/kdp (9).JPG",
+        "title": "Executive - kdp (9).JPG",
+        "subtitle": "Chân dung executive",
+        "category": "executive"
+      }
+    ],
+    "corporate": [
+      {
+        "image": "assets/images/corporate/kdp (1).jpg",
+        "title": "Corporate - kdp (1)",
+        "subtitle": "Chân dung corporate",
+        "category": "corporate"
+      },
+      {
+        "image": "assets/images/corporate/kdp (13).JPG",
+        "title": "Corporate - kdp (13).JPG",
+        "subtitle": "Chân dung corporate",
+        "category": "corporate"
+      },
+      {
+        "image": "assets/images/corporate/kdp (17).JPG",
+        "title": "Corporate - kdp (17).JPG",
+        "subtitle": "Chân dung corporate",
+        "category": "corporate"
+      },
+      {
+        "image": "assets/images/corporate/kdp (2).jpg",
+        "title": "Corporate - kdp (2)",
+        "subtitle": "Chân dung corporate",
+        "category": "corporate"
+      },
+      {
+        "image": "assets/images/corporate/kdp (23).JPG",
+        "title": "Corporate - kdp (23).JPG",
+        "subtitle": "Chân dung corporate",
+        "category": "corporate"
+      },
+      {
+        "image": "assets/images/corporate/kdp (6).JPG",
+        "title": "Corporate - kdp (6).JPG",
+        "subtitle": "Chân dung corporate",
+        "category": "corporate"
+      }
+    ],
+    "entrepreneur": [
+      {
+        "image": "assets/images/entrepreneur/kdp (10).JPG",
+        "title": "Entrepreneur - kdp (10).JPG",
+        "subtitle": "Chân dung entrepreneur",
+        "category": "entrepreneur"
+      },
+      {
+        "image": "assets/images/entrepreneur/kdp (14).JPG",
+        "title": "Entrepreneur - kdp (14).JPG",
+        "subtitle": "Chân dung entrepreneur",
+        "category": "entrepreneur"
+      },
+      {
+        "image": "assets/images/entrepreneur/kdp (18).JPG",
+        "title": "Entrepreneur - kdp (18).JPG",
+        "subtitle": "Chân dung entrepreneur",
+        "category": "entrepreneur"
+      },
+      {
+        "image": "assets/images/entrepreneur/kdp (20).JPG",
+        "title": "Entrepreneur - kdp (20).JPG",
+        "subtitle": "Chân dung entrepreneur",
+        "category": "entrepreneur"
+      },
+      {
+        "image": "assets/images/entrepreneur/kdp (3).jpg",
+        "title": "Entrepreneur - kdp (3)",
+        "subtitle": "Chân dung entrepreneur",
+        "category": "entrepreneur"
+      },
+      {
+        "image": "assets/images/entrepreneur/kdp (7).JPG",
+        "title": "Entrepreneur - kdp (7).JPG",
+        "subtitle": "Chân dung entrepreneur",
+        "category": "entrepreneur"
+      }
+    ],
+    "influencer": [
+      {
+        "image": "assets/images/influencer/kdp (11).JPG",
+        "title": "Influencer - kdp (11).JPG",
+        "subtitle": "Chân dung influencer",
+        "category": "influencer"
+      },
+      {
+        "image": "assets/images/influencer/kdp (15).JPG",
+        "title": "Influencer - kdp (15).JPG",
+        "subtitle": "Chân dung influencer",
+        "category": "influencer"
+      },
+      {
+        "image": "assets/images/influencer/kdp (19).JPG",
+        "title": "Influencer - kdp (19).JPG",
+        "subtitle": "Chân dung influencer",
+        "category": "influencer"
+      },
+      {
+        "image": "assets/images/influencer/kdp (21).JPG",
+        "title": "Influencer - kdp (21).JPG",
+        "subtitle": "Chân dung influencer",
+        "category": "influencer"
+      },
+      {
+        "image": "assets/images/influencer/kdp (4).jpg",
+        "title": "Influencer - kdp (4)",
+        "subtitle": "Chân dung influencer",
+        "category": "influencer"
+      },
+      {
+        "image": "assets/images/influencer/kdp (8).JPG",
+        "title": "Influencer - kdp (8).JPG",
+        "subtitle": "Chân dung influencer",
+        "category": "influencer"
+      }
+    ]
+  },
+  "beforeAfter": [
+    {
+      "title": "Executive Portrait",
+      "before": "assets/images/executive/kdp (1).jpg",
+      "after": "assets/images/executive/kdp (2).jpg"
+    },
+    {
+      "title": "Corporate Profile",
+      "before": "assets/images/corporate/kdp (1).jpg",
+      "after": "assets/images/corporate/kdp (2).jpg"
+    },
+    {
+      "title": "Entrepreneur Branding",
+      "before": "assets/images/entrepreneur/kdp (1).jpg",
+      "after": "assets/images/entrepreneur/kdp (2).jpg"
+    }
+  ],
   "blog": []
 }

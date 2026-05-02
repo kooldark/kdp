@@ -40,16 +40,12 @@ function renderPortfolioGallery() {
         
         galleryItem.innerHTML = `
             <div class="gallery-image">
-                <img src="${item.image}" alt="${item.title}" class="gallery-img" onerror="this.src='assets/images/placeholder.jpg'">
+                <img src="${item.image}" alt="Chân dung chuyên nghiệp" class="gallery-img" onerror="this.src='assets/images/placeholder.jpg'">
                 <div class="gallery-overlay">
                     <a href="${item.image}" class="gallery-link" title="Xem toàn bộ">
                         <i class="fas fa-expand"></i>
                     </a>
                 </div>
-            </div>
-            <div class="gallery-info">
-                <h3>${item.title}</h3>
-                <p>${item.subtitle}</p>
             </div>
         `;
         

@@ -444,27 +444,43 @@ blogCards.forEach(card => {
 // Create modal HTML for gallery
 function createGalleryModal() {
     if (document.getElementById('galleryModal')) {
-        return; // Modal already exists
+        return;
     }
 
     const modal = document.createElement('div');
     modal.id = 'galleryModal';
     modal.className = 'gallery-modal';
     modal.innerHTML = `
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <div class="modal-image">
-                <img id="modalImage" src="" alt="Gallery Image" />
+        <div class="lightbox-container">
+            <button class="lightbox-close" aria-label="Close">&times;</button>
+            
+            <div class="lightbox-content">
+                <div class="lightbox-image-wrapper">
+                    <img id="modalImage" class="lightbox-image" src="" alt="Gallery Image" loading="lazy" />
+                    <div class="lightbox-loader"></div>
+                </div>
             </div>
-            <div class="modal-nav">
-                <button id="prevBtn" class="modal-btn">&larr; Previous</button>
-                <span id="imageCounter"></span>
-                <button id="nextBtn" class="modal-btn">Next &rarr;</button>
+
+            <button class="lightbox-nav lightbox-prev" aria-label="Previous image">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-nav lightbox-next" aria-label="Next image">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <div class="lightbox-info">
+                <div class="lightbox-counter">
+                    <span id="imageCounter"></span>
+                </div>
+                <div class="lightbox-description">
+                    <span id="imageTitle"></span>
+                </div>
             </div>
+
+            <div class="lightbox-thumbnails" id="lightboxThumbnails"></div>
         </div>
     `;
 
-    // Add styles for modal
     const styles = document.createElement('style');
     styles.textContent = `
         .gallery-modal {
@@ -475,120 +491,320 @@ function createGalleryModal() {
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            animation: fadeIn 0.3s ease;
+            background: rgba(0, 0, 0, 0.95);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            overflow: hidden;
         }
 
         .gallery-modal.active {
             display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 1;
         }
 
-        .modal-content {
+        .lightbox-container {
             position: relative;
-            max-width: 90%;
-            max-height: 90vh;
-            background: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 35px;
-            font-weight: bold;
-            color: var(--primary-color);
-            cursor: pointer;
-            z-index: 10000;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            transition: all 0.3s;
-        }
-
-        .modal-close:hover {
-            background: var(--secondary-color);
-            color: var(--white);
-        }
-
-        .modal-image {
-            display: flex;
-            align-items: center;
-            justify-content: center;
             width: 100%;
-            max-height: 75vh;
-            background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
-        }
-
-        .modal-image img {
-            max-width: 100%;
-            max-height: 75vh;
-            object-fit: contain;
-        }
-
-        .modal-nav {
+            height: 100%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            background: var(--light-bg);
-            gap: 15px;
+            justify-content: center;
+            flex-direction: column;
+            animation: zoomIn 0.4s cubic-bezier(0.23, 1, 0.320, 1);
         }
 
-        .modal-btn {
-            background: var(--secondary-color);
-            color: var(--white);
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomOut {
+            from {
+                transform: scale(1);
+                opacity: 1;
+            }
+            to {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 95vw;
+            max-height: 90vh;
+            margin: 0 auto;
+            touch-action: none;
+            user-select: none;
+        }
+
+        .lightbox-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            animation: slideIn 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+            will-change: transform;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .lightbox-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top-color: var(--secondary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .lightbox-image-wrapper.loading .lightbox-loader {
+            opacity: 1;
+        }
+
+        @keyframes spin {
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
             border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
+            color: white;
+            font-size: 32px;
             cursor: pointer;
+            border-radius: 50%;
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+            backdrop-filter: blur(5px);
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-close:active {
+            transform: rotate(90deg) scale(0.95);
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-nav:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-info {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px 20px;
+            border-radius: 25px;
+            max-width: 90%;
+        }
+
+        .lightbox-counter {
             font-size: 13px;
             font-weight: 600;
-            transition: all 0.3s;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.8);
         }
 
-        .modal-btn:hover {
-            background: var(--accent-color);
+        .lightbox-description {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 4px;
+        }
+
+        .lightbox-thumbnails {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 90%;
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+            padding: 10px 15px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            max-height: 100px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        }
+
+        .lightbox-thumbnails::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .lightbox-thumbnails::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .lightbox-thumbnails::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        .thumbnail-item {
+            width: 70px;
+            height: 70px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            cursor: pointer;
+            overflow: hidden;
+            flex-shrink: 0;
+            transition: all 0.2s;
+            opacity: 0.7;
+        }
+
+        .thumbnail-item:hover,
+        .thumbnail-item.active {
+            opacity: 1;
+            border-color: var(--secondary-color);
             transform: scale(1.05);
         }
 
-        #imageCounter {
-            font-size: 14px;
-            color: var(--text-dark);
-            font-weight: 600;
-            min-width: 100px;
-            text-align: center;
+        .thumbnail-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .modal-content {
-                max-width: 95%;
-                max-height: 95vh;
+            .lightbox-nav {
+                width: 45px;
+                height: 45px;
+                font-size: 16px;
             }
 
-            .modal-close {
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+
+            .lightbox-close {
+                width: 45px;
+                height: 45px;
+                font-size: 28px;
                 top: 10px;
                 right: 10px;
-                font-size: 28px;
             }
 
-            .modal-nav {
-                flex-direction: column;
-                gap: 10px;
+            .lightbox-info {
+                bottom: 10px;
+                padding: 10px 16px;
+                font-size: 12px;
             }
 
-            .modal-btn {
-                width: 100%;
-                padding: 12px 15px;
+            .lightbox-thumbnails {
+                display: none;
+            }
+
+            .lightbox-content {
+                max-height: 85vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lightbox-nav {
+                display: none;
+            }
+
+            .lightbox-info {
+                background: rgba(0, 0, 0, 0.5);
+                padding: 8px 12px;
             }
         }
     `;
@@ -599,42 +815,108 @@ function createGalleryModal() {
 // Initialize gallery modal
 createGalleryModal();
 
-// Gallery images data (can be populated from actual images)
+// Gallery images data
 let galleryImages = [];
+let currentImageIndex = 0;
+let touchStartX = 0;
+let touchEndX = 0;
 
-// Collect gallery images
+// Collect gallery images with actual image data
 function initializeGalleryImages() {
     const galleryLinks = document.querySelectorAll('.gallery-link, .featured-link');
-    galleryLinks.forEach((link, index) => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            openGalleryModal(index);
-        });
+    
+    galleryLinks.forEach((link) => {
+        // Remove any existing event listeners by cloning and replacing
+        const newLink = link.cloneNode(true);
+        link.parentNode.replaceChild(newLink, link);
+        
+        // Set href to prevent navigation
+        newLink.setAttribute('href', 'javascript:void(0);');
+        newLink.style.cursor = 'pointer';
+        
+        // Add event listener
+        newLink.addEventListener('click', handleGalleryClick);
     });
 }
 
-let currentImageIndex = 0;
+function handleGalleryClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Get the closest gallery/featured item
+    const link = e.currentTarget;
+    const galleryItem = link.closest('.gallery-item, .featured-item');
+    
+    if (galleryItem) {
+        const index = Array.from(document.querySelectorAll('.gallery-item, .featured-item')).indexOf(galleryItem);
+        openGalleryModal(index);
+    }
+    
+    return false;
+}
+
+function getImageSrcFromItem(item) {
+    const img = item?.querySelector('img');
+    return img?.src || '';
+}
+
+function getImageTitleFromItem(item) {
+    const title = item?.querySelector('h3');
+    return title?.textContent || '';
+}
 
 function openGalleryModal(index) {
     const modal = document.getElementById('galleryModal');
     const modalImage = document.getElementById('modalImage');
+    const imageWrapper = document.querySelector('.lightbox-image-wrapper');
     
     // Get all gallery items
-    const allImages = document.querySelectorAll('.gallery-item, .featured-item');
-    galleryImages = Array.from(allImages);
-    currentImageIndex = index;
+    const allItems = document.querySelectorAll('.gallery-item, .featured-item');
+    galleryImages = Array.from(allItems);
+    currentImageIndex = Math.max(0, Math.min(index, galleryImages.length - 1));
     
-    // Update modal image (using placeholder for now, can be replaced with real images)
-    const imagePlaceholder = galleryImages[currentImageIndex]?.querySelector('.image-placeholder-small, .image-placeholder-featured');
-    if (imagePlaceholder) {
-        // For demo: show placeholder background color
-        modalImage.style.background = window.getComputedStyle(imagePlaceholder).background;
-        modalImage.alt = galleryImages[currentImageIndex]?.querySelector('h3')?.textContent || 'Gallery Image';
-    }
+    // Load and display image
+    loadImage(currentImageIndex);
     
-    updateImageCounter();
+    // Generate thumbnails
+    generateThumbnails();
+    
+    // Show modal
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+}
+
+function loadImage(index) {
+    if (index < 0 || index >= galleryImages.length) return;
+    
+    const item = galleryImages[index];
+    const imgSrc = getImageSrcFromItem(item);
+    const title = getImageTitleFromItem(item);
+    const modalImage = document.getElementById('modalImage');
+    const imageWrapper = document.querySelector('.lightbox-image-wrapper');
+    const imageTitle = document.getElementById('imageTitle');
+    
+    currentImageIndex = index;
+    updateImageCounter();
+    
+    if (imageTitle) {
+        imageTitle.textContent = title;
+    }
+    
+    // Show loader
+    imageWrapper?.classList.add('loading');
+    
+    // Preload image
+    const img = new Image();
+    img.onload = () => {
+        modalImage.src = imgSrc;
+        imageWrapper?.classList.remove('loading');
+    };
+    img.onerror = () => {
+        imageWrapper?.classList.remove('loading');
+        console.warn('Failed to load image:', imgSrc);
+    };
+    img.src = imgSrc;
 }
 
 function closeGalleryModal() {
@@ -651,30 +933,55 @@ function updateImageCounter() {
 function navigateGallery(direction) {
     if (galleryImages.length === 0) return;
     
-    currentImageIndex += direction;
-    if (currentImageIndex >= galleryImages.length) {
-        currentImageIndex = 0;
-    } else if (currentImageIndex < 0) {
-        currentImageIndex = galleryImages.length - 1;
+    let newIndex = currentImageIndex + direction;
+    if (newIndex >= galleryImages.length) {
+        newIndex = 0;
+    } else if (newIndex < 0) {
+        newIndex = galleryImages.length - 1;
     }
     
-    const modal = document.getElementById('galleryModal');
-    const modalImage = document.getElementById('modalImage');
-    const imagePlaceholder = galleryImages[currentImageIndex]?.querySelector('.image-placeholder-small, .image-placeholder-featured');
-    
-    if (imagePlaceholder) {
-        modalImage.style.background = window.getComputedStyle(imagePlaceholder).background;
-    }
-    
-    updateImageCounter();
+    loadImage(newIndex);
 }
 
-// Modal controls
+function generateThumbnails() {
+    const thumbnailsContainer = document.getElementById('lightboxThumbnails');
+    if (!thumbnailsContainer) return;
+    
+    thumbnailsContainer.innerHTML = '';
+    
+    galleryImages.forEach((item, index) => {
+        const thumbnail = document.createElement('div');
+        thumbnail.className = 'thumbnail-item';
+        if (index === currentImageIndex) {
+            thumbnail.classList.add('active');
+        }
+        
+        const img = item.querySelector('img');
+        if (img) {
+            const thumbImg = document.createElement('img');
+            thumbImg.src = img.src;
+            thumbImg.alt = `Thumbnail ${index + 1}`;
+            thumbnail.appendChild(thumbImg);
+            
+            thumbnail.addEventListener('click', () => {
+                loadImage(index);
+                // Update active thumbnail
+                document.querySelectorAll('.thumbnail-item').forEach(t => t.classList.remove('active'));
+                thumbnail.classList.add('active');
+            });
+        }
+        
+        thumbnailsContainer.appendChild(thumbnail);
+    });
+}
+
+// Modal controls with touch/swipe support
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('galleryModal');
-    const closeBtn = document.querySelector('.modal-close');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const prevBtn = document.querySelector('.lightbox-prev');
+    const nextBtn = document.querySelector('.lightbox-next');
+    const imageWrapper = document.querySelector('.lightbox-image-wrapper');
 
     if (closeBtn) {
         closeBtn.addEventListener('click', closeGalleryModal);
@@ -696,6 +1003,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Touch support for swipe gestures
+        if (imageWrapper) {
+            imageWrapper.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+
+            imageWrapper.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+        }
+
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (!modal.classList.contains('active')) return;
@@ -708,17 +1027,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initializeGalleryImages();
 
+    // Load image data when DOM is ready
+    loadImageData();
+});
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+    
+    if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+            // Swiped left - show next image
+            navigateGallery(1);
+        } else {
+            // Swiped right - show previous image
+            navigateGallery(-1);
+        }
+    }
+}
+
 // ============================================
-// LOAD IMAGES FROM DATA.JSON ON PAGE LOAD
+// LOAD IMAGE DATA
 // ============================================
 
-// Load image data when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadImageData);
-} else {
-    loadImageData();
+function loadImageData() {
+    // This function can be used to load images from data.json
+    // For now, it's a placeholder for future enhancement
+    // Images are loaded dynamically from the DOM
 }
-});
 
 // ============================================
 // INITIALIZATION

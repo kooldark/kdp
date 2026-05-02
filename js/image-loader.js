@@ -42,7 +42,7 @@ function renderPortfolioGallery() {
             <div class="gallery-image">
                 <img src="${item.image}" alt="Chân dung chuyên nghiệp" class="gallery-img" onerror="this.src='assets/images/placeholder.jpg'">
                 <div class="gallery-overlay">
-                    <a href="${item.image}" class="gallery-link" title="Xem toàn bộ">
+                    <a href="javascript:void(0);" class="gallery-link" title="Xem toàn bộ">
                         <i class="fas fa-expand"></i>
                     </a>
                 </div>
@@ -54,6 +54,11 @@ function renderPortfolioGallery() {
     
     // Re-attach filter event listeners
     setupGalleryFilters();
+    
+    // Re-initialize gallery modal event listeners
+    if (typeof initializeGalleryImages === 'function') {
+        initializeGalleryImages();
+    }
 }
 
 // ============================================

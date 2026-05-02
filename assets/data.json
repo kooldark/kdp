@@ -162,8 +162,8 @@
   "beforeAfter": [
     {
       "title": "Executive Portrait",
-      "before": "assets/images/executive/kdp (1).jpg",
-      "after": "assets/images/executive/kdp (2).jpg"
+      "before": "assets/images/executive/kdp (1).JPEG",
+      "after": "assets/images/executive/kdp (2).JPEG"
     },
     {
       "title": "Corporate Profile",
@@ -172,8 +172,8 @@
     },
     {
       "title": "Entrepreneur Branding",
-      "before": "assets/images/entrepreneur/kdp (1).jpg",
-      "after": "assets/images/entrepreneur/kdp (2).jpg"
+      "before": "assets/images/entrepreneur/kdp (3).jpg",
+      "after": "assets/images/entrepreneur/kdp (7).JPG"
     }
   ],
   "blog": []

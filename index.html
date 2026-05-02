@@ -59,7 +59,7 @@
             <div class="featured-gallery-masonry">
                 <div class="featured-item featured-tall">
                     <div class="featured-image">
-                        <div class="image-placeholder-featured"></div>
+                        <img src="assets/images/executive/kdp (1).JPEG" alt="Executive Portrait" style="width: 100%; height: 100%; object-fit: cover;">
                         <div class="featured-overlay">
                             <a href="#" class="gallery-link featured-link" title="Xem chi tiết">
                                 <i class="fas fa-expand"></i>
@@ -71,7 +71,7 @@
 
                 <div class="featured-item featured-wide">
                     <div class="featured-image">
-                        <div class="image-placeholder-featured"></div>
+                        <img src="assets/images/corporate/kdp (1).jpg" alt="Corporate Portrait" style="width: 100%; height: 100%; object-fit: cover;">
                         <div class="featured-overlay">
                             <a href="#" class="gallery-link featured-link" title="Xem chi tiết">
                                 <i class="fas fa-expand"></i>
@@ -83,7 +83,7 @@
 
                 <div class="featured-item">
                     <div class="featured-image">
-                        <div class="image-placeholder-featured"></div>
+                        <img src="assets/images/entrepreneur/kdp (3).jpg" alt="Entrepreneur Portrait" style="width: 100%; height: 100%; object-fit: cover;">
                         <div class="featured-overlay">
                             <a href="#" class="gallery-link featured-link" title="Xem chi tiết">
                                 <i class="fas fa-expand"></i>
@@ -95,7 +95,7 @@
 
                 <div class="featured-item featured-tall">
                     <div class="featured-image">
-                        <div class="image-placeholder-featured"></div>
+                        <img src="assets/images/influencer/kdp (4).jpg" alt="Influencer Portrait" style="width: 100%; height: 100%; object-fit: cover;">
                         <div class="featured-overlay">
                             <a href="#" class="gallery-link featured-link" title="Xem chi tiết">
                                 <i class="fas fa-expand"></i>
@@ -107,7 +107,7 @@
 
                 <div class="featured-item featured-wide">
                     <div class="featured-image">
-                        <div class="image-placeholder-featured"></div>
+                        <img src="assets/images/executive/kdp (5).JPG" alt="Studio Portrait" style="width: 100%; height: 100%; object-fit: cover;">
                         <div class="featured-overlay">
                             <a href="#" class="gallery-link featured-link" title="Xem chi tiết">
                                 <i class="fas fa-expand"></i>
@@ -119,7 +119,7 @@
 
                 <div class="featured-item">
                     <div class="featured-image">
-                        <div class="image-placeholder-featured"></div>
+                        <img src="assets/images/corporate/kdp (2).jpg" alt="Corporate Location" style="width: 100%; height: 100%; object-fit: cover;">
                         <div class="featured-overlay">
                             <a href="#" class="gallery-link featured-link" title="Xem chi tiết">
                                 <i class="fas fa-expand"></i>
@@ -510,5 +510,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
     <script src="js/image-loader.js"></script>
     <script src="js/script.js"></script>
+    <script>
+        // Ensure images load when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadImageData);
+        } else {
+            loadImageData();
+        }
+    </script>
 </body>
 </html>

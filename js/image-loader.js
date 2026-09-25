@@ -101,7 +101,7 @@ async function loadImageData() {
                 <div class="gallery-image">
                     <img src="${item.src}" alt="${item.alt}" class="gallery-img" style="width:100%;height:100%;object-fit:cover;">
                     <div class="gallery-overlay">
-                        <a href="https://www.pexels.com/" target="_blank" class="gallery-link" title="Xem ảnh">
+                        <a href="${PEXELS_PROFILE_URL}" target="_blank" rel="noopener noreferrer" class="gallery-link" data-external="true" title="Xem thêm trên Pexels">
                             <i class="fas fa-expand"></i>
                         </a>
                     </div>

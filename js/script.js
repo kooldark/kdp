@@ -830,7 +830,6 @@ let touchEndX = 0;
 // Collect gallery images with actual image data
 function initializeGalleryImages() {
     document.querySelectorAll('.gallery-link, .featured-link').forEach(link => {
-        link.setAttribute('href', 'javascript:void(0);');
         link.style.cursor = 'pointer';
     });
 
@@ -841,6 +840,8 @@ function initializeGalleryImages() {
         if (!galleryItem) return;
 
         const clickedLink = event.target.closest('.gallery-link, .featured-link');
+        if (clickedLink?.dataset.external === 'true') return;
+
         if (clickedLink || galleryItem.querySelector('img')) {
             event.preventDefault();
             event.stopPropagation();

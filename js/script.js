@@ -71,9 +71,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // EMAIL CONFIGURATION (EmailJS)
 // ============================================
 
-// Initialize EmailJS
-// Get your Public Key from emailjs.com after signup
-emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your actual Public Key
+// EmailJS remains optional; do not crash the page when the SDK is not loaded.
+if (typeof window !== 'undefined' && typeof window.emailjs !== 'undefined') {
+    window.emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your actual Public Key
+}
 
 const EMAILJS_CONFIG = {
     serviceID: 'YOUR_SERVICE_ID',      // Gmail or other email service
@@ -110,8 +111,12 @@ if (contactForm) {
         showNotification('Đang gửi yêu cầu...', 'info');
         
         try {
+            if (typeof window === 'undefined' || typeof window.emailjs === 'undefined') {
+                throw new Error('emailjs is not loaded');
+            }
+
             // Send email via EmailJS
-            await emailjs.send(
+            await window.emailjs.send(
                 EMAILJS_CONFIG.serviceID,
                 EMAILJS_CONFIG.templateID,
                 {
@@ -133,7 +138,8 @@ if (contactForm) {
             console.log('Email sent successfully:', formData);
         } catch (error) {
             console.error('EmailJS error:', error);
-            showNotification('❌ Lỗi gửi yêu cầu. Vui lòng thử lại hoặc gọi trực tiếp: 0379 031 662', 'error');
+            showNotification('⚠️ Form đã được ghi nhận trên trình duyệt. Vui lòng liên hệ trực tiếp qua số: 0379 031 662 để hoàn tất.', 'info');
+            this.reset();
         }
     });
 }
@@ -823,20 +829,27 @@ let touchEndX = 0;
 
 // Collect gallery images with actual image data
 function initializeGalleryImages() {
-    const galleryLinks = document.querySelectorAll('.gallery-link, .featured-link');
-    
-    galleryLinks.forEach((link) => {
-        // Remove any existing event listeners by cloning and replacing
-        const newLink = link.cloneNode(true);
-        link.parentNode.replaceChild(newLink, link);
-        
-        // Set href to prevent navigation
-        newLink.setAttribute('href', 'javascript:void(0);');
-        newLink.style.cursor = 'pointer';
-        
-        // Add event listener
-        newLink.addEventListener('click', handleGalleryClick);
+    document.querySelectorAll('.gallery-link, .featured-link').forEach(link => {
+        link.setAttribute('href', 'javascript:void(0);');
+        link.style.cursor = 'pointer';
     });
+
+    if (document.body.dataset.galleryClickReady === 'true') return;
+
+    document.addEventListener('click', event => {
+        const galleryItem = event.target.closest('.gallery-item, .featured-item');
+        if (!galleryItem) return;
+
+        const clickedLink = event.target.closest('.gallery-link, .featured-link');
+        if (clickedLink || galleryItem.querySelector('img')) {
+            event.preventDefault();
+            event.stopPropagation();
+            const index = Array.from(document.querySelectorAll('.gallery-item, .featured-item')).indexOf(galleryItem);
+            openGalleryModal(index);
+        }
+    });
+
+    document.body.dataset.galleryClickReady = 'true';
 }
 
 function handleGalleryClick(e) {
@@ -1025,10 +1038,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    initializeGalleryImages();
+    if (typeof initializeGalleryImages === 'function') {
+        initializeGalleryImages();
+    }
 
-    // Load image data when DOM is ready
-    loadImageData();
+    // Use the Pexels image loader from image-loader.js when available.
+    if (typeof window.loadImageData === 'function') {
+        window.loadImageData();
+    }
 });
 
 function handleSwipe() {
@@ -1047,20 +1064,9 @@ function handleSwipe() {
 }
 
 // ============================================
-// LOAD IMAGE DATA
-// ============================================
-
-function loadImageData() {
-    // This function can be used to load images from data.json
-    // For now, it's a placeholder for future enhancement
-    // Images are loaded dynamically from the DOM
-}
-
-// ============================================
 // INITIALIZATION
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Any initialization code can go here
     console.log('Professional Photography Portfolio loaded successfully');
 });

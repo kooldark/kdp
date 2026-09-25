@@ -1,221 +1,144 @@
 // ============================================
-// IMAGE DATA LOADER
+// PEXELS PORTFOLIO LOADER
 // ============================================
 
-let galleryData = {};
+const PEXELS_API_KEY = 'JYx8GlEAwyAcirMKQ3AedyN0Cy1z8DfhlJ66nOCP6YJwuVDXNIK8X4oP';
+const PEXELS_PROFILE_URL = 'https://www.pexels.com/@kooldark';
+const PEXELS_QUERIES = [
+    { key: 'executive', query: 'Tran Nhu Tuan executive portrait' },
+    { key: 'corporate', query: 'Tran Nhu Tuan corporate portrait' },
+    { key: 'entrepreneur', query: 'Tran Nhu Tuan entrepreneur portrait' },
+    { key: 'influencer', query: 'Tran Nhu Tuan influencer portrait' }
+];
 
-// Load data from JSON file
-async function loadImageData() {
+function normalizePexelsImage(photo) {
+    const source = photo?.src?.large2x || photo?.src?.large || photo?.src?.medium || photo?.src?.original;
+    if (!source) return '';
+
     try {
-        const response = await fetch('assets/data.json');
-        galleryData = await response.json();
-        console.log('Image data loaded successfully', galleryData);
-        
-        // Render all galleries after data loaded
-        renderPortfolioGallery();
-        renderBeforeAfterSliders();
-        renderBlogCards();
+        const url = new URL(source);
+        url.searchParams.set('w', '1024');
+        url.searchParams.set('auto', 'compress');
+        url.searchParams.set('cs', 'tinysrgb');
+        return url.toString();
     } catch (error) {
-        console.error('Error loading image data:', error);
+        return source;
     }
 }
-
-// ============================================
-// RENDER PORTFOLIO GALLERY
-// ============================================
-
-function renderPortfolioGallery() {
-    const galleryGrid = document.getElementById('galleryGrid');
-    if (!galleryGrid) return;
-    
-    galleryGrid.innerHTML = '';
-    
-    // Flatten all portfolio categories
-    const allItems = Object.values(galleryData.portfolio || {}).flat();
-    
-    allItems.forEach(item => {
-        const galleryItem = document.createElement('div');
-        galleryItem.className = 'gallery-item';
-        galleryItem.setAttribute('data-category', item.category);
-        
-        galleryItem.innerHTML = `
-            <div class="gallery-image">
-                <img src="${item.image}" alt="Chân dung chuyên nghiệp" class="gallery-img" onerror="this.src='assets/images/placeholder.jpg'">
-                <div class="gallery-overlay">
-                    <a href="javascript:void(0);" class="gallery-link" title="Xem toàn bộ">
-                        <i class="fas fa-expand"></i>
-                    </a>
-                </div>
-            </div>
-        `;
-        
-        galleryGrid.appendChild(galleryItem);
-    });
-    
-    // Re-attach filter event listeners
-    setupGalleryFilters();
-    
-    // Re-initialize gallery modal event listeners
-    if (typeof initializeGalleryImages === 'function') {
-        initializeGalleryImages();
-    }
-}
-
-// ============================================
-// RENDER BEFORE/AFTER SLIDERS
-// ============================================
-
-function renderBeforeAfterSliders() {
-    const beforeAfterGallery = document.querySelector('.before-after-gallery');
-    if (!beforeAfterGallery) return;
-    
-    beforeAfterGallery.innerHTML = '';
-    
-    const beforeAfterItems = galleryData.beforeAfter || [];
-    
-    beforeAfterItems.forEach((item, index) => {
-        const sliderItem = document.createElement('div');
-        sliderItem.className = 'before-after-item';
-        
-        sliderItem.innerHTML = `
-            <div class="before-after-slider">
-                <div class="img-before">
-                    <img src="${item.before}" alt="Before - ${item.title}" class="before-img" onerror="this.src='assets/images/placeholder.jpg'">
-                </div>
-                <div class="img-after">
-                    <img src="${item.after}" alt="After - ${item.title}" class="after-img" onerror="this.src='assets/images/placeholder.jpg'">
-                </div>
-                <input type="range" min="0" max="100" value="50" class="slider-handle">
-            </div>
-            <p class="ba-label">${item.title}</p>
-        `;
-        
-        beforeAfterGallery.appendChild(sliderItem);
-    });
-    
-    // Re-initialize before/after sliders
-    setupBeforeAfterSliders();
-}
-
-// ============================================
-// RENDER BLOG CARDS
-// ============================================
-
-function renderBlogCards() {
-    const blogGrid = document.querySelector('.blog-grid');
-    if (!blogGrid) return;
-    
-    blogGrid.innerHTML = '';
-    
-    const blogItems = galleryData.blog || [];
-    
-    blogItems.forEach(item => {
-        const blogCard = document.createElement('div');
-        blogCard.className = 'blog-card';
-        
-        blogCard.innerHTML = `
-            <div class="blog-image">
-                <img src="${item.image}" alt="${item.title}" class="blog-img" onerror="this.src='assets/images/placeholder.jpg'">
-                <span class="blog-category">${item.category}</span>
-            </div>
-            <div class="blog-content">
-                <h3>${item.title}</h3>
-                <p>${item.description}</p>
-                <a href="${item.link}" class="read-more">Xem Danh Sách →</a>
-            </div>
-        `;
-        
-        blogGrid.appendChild(blogCard);
-    });
-    
-    // Re-observe blog cards
-    observeBlogCards();
-}
-
-// ============================================
-// SETUP BEFORE/AFTER SLIDERS
-// ============================================
-
-function setupBeforeAfterSliders() {
-    const sliderHandles = document.querySelectorAll('.slider-handle');
-    
-    sliderHandles.forEach(slider => {
-        slider.addEventListener('input', (e) => {
-            const value = e.target.value;
-            const afterImage = e.target.parentElement.querySelector('.img-after');
-            afterImage.style.width = value + '%';
-        });
-        
-        // Set initial value
-        slider.value = 50;
-        const afterImage = slider.parentElement.querySelector('.img-after');
-        afterImage.style.width = '50%';
-    });
-}
-
-// ============================================
-// SETUP GALLERY FILTERS
-// ============================================
 
 function setupGalleryFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
-    
+
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Remove active class from all buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
             button.classList.add('active');
-            
+
             const filter = button.getAttribute('data-filter');
-            
             galleryItems.forEach(item => {
                 const category = item.getAttribute('data-category');
-                
-                if (filter === 'all' || filter === category) {
-                    item.style.display = 'block';
-                    item.style.animation = 'fadeIn 0.5s ease-in';
-                } else {
-                    item.style.display = 'none';
-                }
+                const show = filter === 'all' || filter === category;
+                item.style.display = show ? 'block' : 'none';
             });
         });
     });
 }
 
-// ============================================
-// OBSERVE BLOG CARDS FOR ANIMATION
-// ============================================
+async function loadImageData() {
+    const galleryGrid = document.getElementById('galleryGrid');
+    if (!galleryGrid) return;
 
-function observeBlogCards() {
-    const blogCards = document.querySelectorAll('.blog-card');
-    const timelineObserverOptions = {
-        threshold: 0.2,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const blogObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+    try {
+        const items = [];
+
+        const seenPhotoIds = new Set();
+
+        for (const item of PEXELS_QUERIES) {
+            for (let page = 1; page <= 2; page++) {
+                const response = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(item.query)}&per_page=12&page=${page}`, {
+                    headers: {
+                        Authorization: PEXELS_API_KEY
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Pexels request failed: ${response.status}`);
+                }
+
+                const data = await response.json();
+                if (!Array.isArray(data.photos)) continue;
+
+                data.photos
+                    .filter(photo => (photo.photographer_url || '').toLowerCase().includes('/@kooldark'))
+                    .forEach(photo => {
+                    const normalized = normalizePexelsImage(photo);
+                    if (!normalized || seenPhotoIds.has(photo.id)) return;
+                    seenPhotoIds.add(photo.id);
+                    if (!items.some(entry => entry.key === photo.id)) {
+                        items.push({
+                            key: photo.id,
+                            category: item.key,
+                            src: normalized,
+                            alt: photo.alt || item.query,
+                            title: photo.photographer || 'KDProfile'
+                        });
+                    }
+                });
+
+                if (items.length >= 12) {
+                    break;
+                }
             }
-        });
-    }, timelineObserverOptions);
-    
-    blogCards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = 'all 0.6s ease-out';
-        blogObserver.observe(card);
-    });
+        }
+
+        if (!items.length) {
+            throw new Error('No photos returned from Pexels');
+        }
+
+        galleryGrid.innerHTML = items.map(item => `
+            <div class="gallery-item" data-category="${item.category}">
+                <div class="gallery-image">
+                    <img src="${item.src}" alt="${item.alt}" class="gallery-img" style="width:100%;height:100%;object-fit:cover;">
+                    <div class="gallery-overlay">
+                        <a href="https://www.pexels.com/" target="_blank" class="gallery-link" title="Xem ảnh">
+                            <i class="fas fa-expand"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        setupGalleryFilters();
+        return;
+    } catch (error) {
+        console.error('Pexels gallery load failed:', error);
+        const fallbackImages = [
+            'assets/images/executive/kdp (1).JPEG',
+            'assets/images/corporate/kdp (1).jpg',
+            'assets/images/entrepreneur/kdp (3).jpg',
+            'assets/images/influencer/kdp (4).jpg',
+            'assets/images/executive/kdp (5).JPG',
+            'assets/images/corporate/kdp (2).jpg'
+        ];
+
+        galleryGrid.innerHTML = fallbackImages.map((src, index) => `
+            <div class="gallery-item" data-category="${index % 2 === 0 ? 'executive' : 'corporate'}">
+                <div class="gallery-image">
+                    <img src="${src}" alt="Portfolio" class="gallery-img" style="width:100%;height:100%;object-fit:cover;">
+                    <div class="gallery-overlay">
+                        <a href="#" class="gallery-link" title="Xem toàn bộ">
+                            <i class="fas fa-expand"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        setupGalleryFilters();
+    }
 }
 
-// ============================================
-// LOAD DATA ON DOCUMENT READY
-// ============================================
-
-document.addEventListener('DOMContentLoaded', async () => {
-    await loadImageData();
+document.addEventListener('DOMContentLoaded', () => {
+    loadImageData();
 });

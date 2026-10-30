@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chọn hạng mục chụp ảnh doanh nghiệp để KD PROFILE tư vấn phương án và báo giá phù hợp.">
+    <title>Tư vấn & báo giá chụp ảnh doanh nghiệp | KD PROFILE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/corporate-checklist.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="index.html" aria-label="KD PROFILE - Trang chủ">KD PROFILE</a>
+        <a class="header-link" href="index.html">← Về trang chủ</a>
+    </header>
+
+    <main class="page">
+        <section class="intro">
+            <p class="eyebrow">CHỤP ẢNH DOANH NGHIỆP</p>
+            <h1>Cùng bạn lên phương án hình ảnh phù hợp</h1>
+            <p class="lead">
+                Chọn những hạng mục bạn đang quan tâm. Nếu tiện, bạn có thể chia sẻ thêm vài thông tin
+                để KD PROFILE tư vấn cách chụp và báo giá sát với nhu cầu thực tế.
+            </p>
+            <p class="note">Các câu trả lời đều không bắt buộc. Chưa rõ nhu cầu? Cứ để trống và nhắn để được tư vấn.</p>
+        </section>
+
+        <form id="inquiryForm">
+            <section class="section" aria-labelledby="servicesTitle">
+                <div class="section-heading">
+                    <div>
+                        <p class="step">01 — NHU CẦU HÌNH ẢNH</p>
+                        <h2 id="servicesTitle">Bạn đang cần chụp những nội dung nào?</h2>
+                    </div>
+                    <p class="section-hint">Có thể chọn nhiều hạng mục</p>
+                </div>
+
+                <div class="checklist">
+                    <label class="item">
+                        <input type="checkbox" name="services" value="Chân dung lãnh đạo">
+                        <span class="item-copy">
+                            <strong>Chân dung lãnh đạo</strong>
+                            <span>CEO, ban giám đốc và đội ngũ điều hành.</span>
+                        </span>
+                    </label>
+                    <label class="item">
+                        <input type="checkbox" name="services" value="Chân dung nhân sự">
+                        <span class="item-copy">
+                            <strong>Chân dung nhân sự</strong>
+                            <span>Ảnh cá nhân, ảnh nhóm, phòng ban hoặc toàn công ty.</span>
+                        </span>
+                    </label>
+                    <label class="item">
+                        <input type="checkbox" name="services" value="Văn phòng và cơ sở vật chất">
+                        <span class="item-copy">
+                            <strong>Văn phòng và cơ sở vật chất</strong>
+                            <span>Văn phòng, cửa hàng, nhà xưởng, máy móc và thiết bị.</span>
+                        </span>
+                    </label>
+                    <label class="item">
+                        <input type="checkbox" name="services" value="Hoạt động và quy trình làm việc">
+                        <span class="item-copy">
+                            <strong>Hoạt động và quy trình làm việc</strong>
+                            <span>Đội ngũ làm việc, quy trình sản xuất hoặc cung cấp dịch vụ.</span>
+                        </span>
+                    </label>
+                    <label class="item">
+                        <input type="checkbox" name="services" value="Sự kiện và hoạt động với đối tác">
+                        <span class="item-copy">
+                            <strong>Sự kiện và hoạt động với đối tác</strong>
+                            <span>Hội nghị, ký kết, tiếp đón khách hàng và sự kiện nội bộ.</span>
+                        </span>
+                    </label>
+                    <label class="item">
+                        <input type="checkbox" name="services" value="Sản phẩm và dịch vụ">
+                        <span class="item-copy">
+                            <strong>Sản phẩm và dịch vụ</strong>
+                            <span>Sản phẩm chủ lực, dịch vụ và các công đoạn thực hiện.</span>
+                        </span>
+                    </label>
+                    <label class="item">
+                        <input type="checkbox" name="services" value="Cần tư vấn thêm">
+                        <span class="item-copy">
+                            <strong>Tôi cần tư vấn thêm</strong>
+                            <span>Chưa rõ nên chụp gì hoặc muốn trao đổi thêm về ý tưởng.</span>
+                        </span>
+                    </label>
+                </div>
+                <div class="selection-status" aria-live="polite">
+                    Đã chọn <strong id="selectedCount">0</strong> hạng mục
+                </div>
+                <div class="staff-size-field">
+                    <label for="staff">Quy mô nhân sự dự kiến chụp <span>(không bắt buộc)</span></label>
+                    <select id="staff" name="staff">
+                        <option value="">Chọn số lượng nếu bạn đã dự kiến</option>
+                        <option>1–5 người</option>
+                        <option>6–10 người</option>
+                        <option>11–30 người</option>
+                        <option>31–50 người</option>
+                        <option>Trên 50 người</option>
+                        <option>Chưa xác định</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="section details-section" aria-labelledby="detailsTitle">
+                <div class="section-heading">
+                    <div>
+                        <p class="step">02 — THÔNG TIN THÊM (KHÔNG BẮT BUỘC)</p>
+                        <h2 id="detailsTitle">Nếu tiện, bạn chia sẻ thêm nhé</h2>
+                    </div>
+                </div>
+                <p class="section-intro">Bạn có thể điền phần nào thuận tiện; mình sẽ trao đổi thêm qua Zalo nếu cần.</p>
+
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="company">Tên doanh nghiệp</label>
+                        <input id="company" name="company" type="text" autocomplete="organization" placeholder="Tên công ty / thương hiệu">
+                    </div>
+                    <div class="field">
+                        <label for="contact">Tên người liên hệ</label>
+                        <input id="contact" name="contact" type="text" autocomplete="name" placeholder="Họ và tên (nếu muốn)">
+                    </div>
+                    <div class="field">
+                        <label for="phone">Số điện thoại</label>
+                        <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Số điện thoại (nếu muốn)">
+                    </div>
+                    <div class="field">
+                        <label for="industry">Lĩnh vực hoạt động</label>
+                        <input id="industry" name="industry" type="text" placeholder="Ví dụ: công nghệ, xây dựng, sản xuất...">
+                    </div>
+                    <div class="field">
+                        <label for="location">Địa điểm chụp dự kiến</label>
+                        <input id="location" name="location" type="text" placeholder="Tỉnh/thành phố hoặc địa chỉ">
+                    </div>
+                    <div class="field">
+                        <label for="purpose">Bạn dự định sử dụng ảnh vào việc gì?</label>
+                        <select id="purpose" name="purpose">
+                            <option value="">Chọn mục đích (nếu có)</option>
+                            <option>Website doanh nghiệp</option>
+                            <option>Hồ sơ năng lực</option>
+                            <option>Truyền thông và quảng cáo</option>
+                            <option>Tuyển dụng hoặc truyền thông nội bộ</option>
+                            <option>Nhiều mục đích</option>
+                            <option>Chưa xác định</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="date">Thời gian chụp dự kiến</label>
+                        <input id="date" name="date" type="text" placeholder="Ví dụ: trong tháng 11 hoặc chưa xác định">
+                    </div>
+                    <div class="field field-full">
+                        <label for="note">Bạn có yêu cầu hoặc mong muốn nào khác không?</label>
+                        <textarea id="note" name="note" rows="4" placeholder="Ví dụ: số lượng ảnh, phong cách mong muốn, yêu cầu đặc biệt..."></textarea>
+                    </div>
+                </div>
+
+                <div class="privacy-note">
+                    Khi nhấn nút, nội dung yêu cầu sẽ được sao chép và Zalo của KD PROFILE sẽ mở để bạn dán, kiểm tra rồi gửi.
+                </div>
+                <button class="submit-button" type="submit">Sao chép nội dung &amp; mở Zalo <span aria-hidden="true">→</span></button>
+                <p class="submit-hint">
+                    Bạn chủ động gửi tin nhắn trên Zalo; thông tin không tự gửi đi khi bạn nhấn nút.
+                </p>
+                <div id="sendStatus" class="send-fallback" role="status" aria-live="polite" hidden></div>
+            </section>
+        </form>
+
+        <footer class="page-footer">
+            <strong>KD PROFILE</strong>
+            <span>Chụp ảnh doanh nghiệp · Tư vấn theo nhu cầu thực tế</span>
+        </footer>
+    </main>
+    <script src="js/corporate-checklist.js"></script>
+</body>
+</html>

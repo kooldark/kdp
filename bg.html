@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="googlebot" content="noindex, nofollow, noarchive">
+    <meta name="description" content="Công cụ nội bộ KD PROFILE để ước tính và chuẩn bị báo giá chụp ảnh doanh nghiệp.">
+    <title>Công cụ báo giá nội bộ | KD PROFILE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/internal-quote.css">
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">KD PROFILE · DÙNG NỘI BỘ</p>
+                <h1>Công cụ ước tính báo giá</h1>
+                <p class="intro">Chọn khu vực, hạng mục và số lượng để tham khảo khoảng giá, sau đó tự điều chỉnh giá chốt theo yêu cầu thực tế.</p>
+            </div>
+            <button class="button button-light" id="resetButton" type="button">Làm mới</button>
+        </header>
+
+        <section class="notice" aria-label="Lưu ý về khoảng giá">
+            <strong>Giá tham khảo, không phải bảng giá thị trường chính thức.</strong>
+            Đây là mức khởi điểm nội bộ để bạn cân nhắc. Hãy điều chỉnh theo thời lượng, số ảnh bàn giao,
+            nhân sự, thiết bị, hậu kỳ, di chuyển và yêu cầu thực tế trước khi gửi khách.
+        </section>
+
+        <section class="panel setup-panel" aria-labelledby="setupTitle">
+            <div class="panel-heading">
+                <div>
+                    <p class="step">01 — THIẾT LẬP</p>
+                    <h2 id="setupTitle">Thông tin dự án</h2>
+                </div>
+            </div>
+            <div class="setup-grid">
+                <div class="field">
+                    <label for="city">Khu vực chụp</label>
+                    <select id="city">
+                        <option value="danang">Đà Nẵng</option>
+                        <option value="hcm">TP. Hồ Chí Minh</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="client">Tên khách hàng / doanh nghiệp <span>không bắt buộc</span></label>
+                    <input id="client" type="text" placeholder="Tên để ghi vào bản báo giá">
+                </div>
+            </div>
+        </section>
+
+        <section class="panel" aria-labelledby="servicesTitle">
+            <div class="panel-heading service-heading">
+                <div>
+                    <p class="step">02 — HẠNG MỤC</p>
+                    <h2 id="servicesTitle">Chọn dịch vụ và điều chỉnh đơn giá</h2>
+                </div>
+                <p class="hint">Đơn giá có thể sửa trực tiếp · số tiền tính bằng VNĐ</p>
+            </div>
+
+            <div class="service-list">
+                <article class="service-row" data-service="leadership" data-unit="buổi">
+                    <label class="service-select">
+                        <input class="service-toggle" type="checkbox">
+                        <span class="service-name">Chân dung lãnh đạo</span>
+                    </label>
+                    <p class="service-unit">Buổi chụp ngắn, 1–2 giờ</p>
+                    <div class="rate-fields">
+                        <label>Thấp <input class="rate-low" type="number" min="0" step="100000" value="2000000" inputmode="numeric"></label>
+                        <label>Cao <input class="rate-high" type="number" min="0" step="100000" value="3500000" inputmode="numeric"></label>
+                        <label>Số buổi <input class="quantity" type="number" min="1" step="1" value="1" inputmode="numeric"></label>
+                    </div>
+                </article>
+                <article class="service-row" data-service="staff" data-unit="người">
+                    <label class="service-select">
+                        <input class="service-toggle" type="checkbox">
+                        <span class="service-name">Chân dung nhân sự</span>
+                    </label>
+                    <p class="service-unit">Đơn giá / người · nên áp dụng mức tối thiểu cho dự án nhỏ</p>
+                    <div class="rate-fields">
+                        <label>Thấp <input class="rate-low" type="number" min="0" step="50000" value="300000" inputmode="numeric"></label>
+                        <label>Cao <input class="rate-high" type="number" min="0" step="50000" value="500000" inputmode="numeric"></label>
+                        <label>Số người <input class="quantity" type="number" min="1" step="1" value="10" inputmode="numeric"></label>
+                    </div>
+                </article>
+                <article class="service-row" data-service="workspace" data-unit="nửa ngày">
+                    <label class="service-select">
+                        <input class="service-toggle" type="checkbox">
+                        <span class="service-name">Văn phòng và cơ sở vật chất</span>
+                    </label>
+                    <p class="service-unit">Nửa ngày · tối đa khoảng 4 giờ</p>
+                    <div class="rate-fields">
+                        <label>Thấp <input class="rate-low" type="number" min="0" step="100000" value="3500000" inputmode="numeric"></label>
+                        <label>Cao <input class="rate-high" type="number" min="0" step="100000" value="6000000" inputmode="numeric"></label>
+                        <label>Số buổi <input class="quantity" type="number" min="1" step="1" value="1" inputmode="numeric"></label>
+                    </div>
+                </article>
+                <article class="service-row" data-service="operations" data-unit="nửa ngày">
+                    <label class="service-select">
+                        <input class="service-toggle" type="checkbox">
+                        <span class="service-name">Hoạt động và quy trình làm việc</span>
+                    </label>
+                    <p class="service-unit">Nửa ngày · sản xuất hoặc cung cấp dịch vụ</p>
+                    <div class="rate-fields">
+                        <label>Thấp <input class="rate-low" type="number" min="0" step="100000" value="4000000" inputmode="numeric"></label>
+                        <label>Cao <input class="rate-high" type="number" min="0" step="100000" value="7000000" inputmode="numeric"></label>
+                        <label>Số buổi <input class="quantity" type="number" min="1" step="1" value="1" inputmode="numeric"></label>
+                    </div>
+                </article>
+                <article class="service-row" data-service="event" data-unit="sự kiện">
+                    <label class="service-select">
+                        <input class="service-toggle" type="checkbox">
+                        <span class="service-name">Sự kiện và hoạt động với đối tác</span>
+                    </label>
+                    <p class="service-unit">Một sự kiện, thời lượng khoảng 4 giờ</p>
+                    <div class="rate-fields">
+                        <label>Thấp <input class="rate-low" type="number" min="0" step="100000" value="4000000" inputmode="numeric"></label>
+                        <label>Cao <input class="rate-high" type="number" min="0" step="100000" value="7000000" inputmode="numeric"></label>
+                        <label>Số sự kiện <input class="quantity" type="number" min="1" step="1" value="1" inputmode="numeric"></label>
+                    </div>
+                </article>
+                <article class="service-row" data-service="product" data-unit="nửa ngày">
+                    <label class="service-select">
+                        <input class="service-toggle" type="checkbox">
+                        <span class="service-name">Sản phẩm và dịch vụ</span>
+                    </label>
+                    <p class="service-unit">Nửa ngày · chưa gồm thuê bối cảnh/đạo cụ đặc biệt</p>
+                    <div class="rate-fields">
+                        <label>Thấp <input class="rate-low" type="number" min="0" step="100000" value="4000000" inputmode="numeric"></label>
+                        <label>Cao <input class="rate-high" type="number" min="0" step="100000" value="7000000" inputmode="numeric"></label>
+                        <label>Số buổi <input class="quantity" type="number" min="1" step="1" value="1" inputmode="numeric"></label>
+                    </div>
+                </article>
+            </div>
+            <p class="empty-hint" id="emptyHint">Chọn ít nhất một hạng mục để xem ước tính.</p>
+        </section>
+
+        <section class="panel extra-panel" aria-labelledby="extrasTitle">
+            <div class="panel-heading">
+                <div>
+                    <p class="step">03 — CHI PHÍ VÀ GIÁ CHỐT</p>
+                    <h2 id="extrasTitle">Điều chỉnh theo dự án</h2>
+                </div>
+            </div>
+            <div class="setup-grid">
+                <div class="field">
+                    <label for="expenses">Di chuyển / thuê thêm / chi phí khác</label>
+                    <input id="expenses" type="number" min="0" step="100000" value="0" inputmode="numeric">
+                </div>
+                <div class="field">
+                    <label for="discount">Điều chỉnh giảm (%)</label>
+                    <input id="discount" type="number" min="0" max="100" step="1" value="0" inputmode="numeric">
+                </div>
+            </div>
+            <p class="hint">Phí đi lại giữa thành phố, lưu trú, VAT, makeup, thuê bối cảnh và bàn giao gấp cần xác nhận riêng nếu áp dụng.</p>
+        </section>
+
+        <section class="summary" aria-labelledby="summaryTitle">
+            <div class="summary-copy">
+                <p class="step">04 — KẾT QUẢ THAM KHẢO</p>
+                <h2 id="summaryTitle">Khoảng dự kiến</h2>
+                <p class="range" id="estimateRange">Chưa chọn hạng mục</p>
+                <label class="final-price-label" for="finalPrice">Giá đề xuất gửi khách (có thể sửa)</label>
+                <div class="final-price-wrap">
+                    <input id="finalPrice" type="number" min="0" step="100000" inputmode="numeric" placeholder="Chọn dịch vụ để tính">
+                    <span>VNĐ</span>
+                </div>
+                <p class="rounding-hint">Giá gợi ý mặc định là trung điểm khoảng ước tính, làm tròn đến 100.000đ.</p>
+            </div>
+            <div class="summary-actions">
+                <button class="button button-primary" id="copyQuote" type="button" disabled>Sao chép nội dung báo giá</button>
+                <p id="copyStatus" class="copy-status" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <footer class="page-footer">
+            Bảng giá và phép tính chỉ lưu trong trang này, không gửi dữ liệu về máy chủ.
+            Công cụ này không có đăng nhập; không dùng như kho lưu thông tin khách hàng hoặc dữ liệu cần bảo mật.
+        </footer>
+    </main>
+    <script src="js/internal-quote.js"></script>
+</body>
+</html>
